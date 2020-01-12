@@ -7,6 +7,7 @@ import org.apache.commons.csv.CSVRecord;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.Reader;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -62,7 +63,7 @@ public class JobData {
      * with "Enterprise Holdings, Inc".
      *
      * @param column   Column that should be searched.
-     * @param value Value of teh field to search for
+     * @param value Value of the field to search for
      * @return List of all jobs matching the criteria
      */
     public static ArrayList<HashMap<String, String>> findByColumnAndValue(String column, String value) {
@@ -82,6 +83,35 @@ public class JobData {
         }
 
         return jobs;
+    }
+
+//    At this stage, the application will allow users to search a given column of the data for a given String. Your next
+//    task is to enable a search that looks for the search term in all of the columns.
+
+//    In the JobData class, create a new (public static) method that will search for a string within each of the
+//    columns. Name it findByValue. Here are a few observations:
+
+//    1. The method that you write should not contain duplicate jobs. So, for example, if a listing has position type
+//    “Web - Front End” and name “Front end web dev” then searching for “web” should not include the listing twice.
+
+//    2. As with printJobs, you should write your code in a way that if a new column is added to the data, your code will
+//    automatically search the new column as well.
+
+//    3. You should NOT write code that calls findByColumnAndValue once for each column. Rather, utilize loops and
+//    collection methods as you did above.
+
+//    4. You should, on the other hand, read and understand findByColumnAndValue, since your code will look similar in
+//    some ways.
+
+//    You’ll need to call findByValue from somewhere in main. We’ll leave it up to you to find where. You might have
+//    noticed that when you try to search all columns using the app, a message is printed, so that is a good clue to
+//    help you find where to place this new method call. Once you find where to call your new method, you can Run the
+//    program again to test your code.
+
+    public static ArrayList<HashMap<String, String>> findByValue() {
+
+        return anyColumnJobs;
+
     }
 
     /**

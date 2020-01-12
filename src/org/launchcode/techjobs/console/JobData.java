@@ -75,9 +75,9 @@ public class JobData {
 
         for (HashMap<String, String> row : allJobs) {
 
-            String aValue = row.get(column);
+            String aValue = row.get(column).toUpperCase();
 
-            if (aValue.contains(value)) {
+            if (aValue.contains(value.toUpperCase())) {
                 jobs.add(row);
             }
         }
@@ -85,33 +85,22 @@ public class JobData {
         return jobs;
     }
 
-//    At this stage, the application will allow users to search a given column of the data for a given String. Your next
-//    task is to enable a search that looks for the search term in all of the columns.
+    public static ArrayList<HashMap<String, String>> findByValue(String value) {
 
-//    In the JobData class, create a new (public static) method that will search for a string within each of the
-//    columns. Name it findByValue. Here are a few observations:
+        loadData();
 
-//    1. The method that you write should not contain duplicate jobs. So, for example, if a listing has position type
-//    “Web - Front End” and name “Front end web dev” then searching for “web” should not include the listing twice.
+        ArrayList<HashMap<String, String>> jobs = new ArrayList<>();
 
-//    2. As with printJobs, you should write your code in a way that if a new column is added to the data, your code will
-//    automatically search the new column as well.
-
-//    3. You should NOT write code that calls findByColumnAndValue once for each column. Rather, utilize loops and
-//    collection methods as you did above.
-
-//    4. You should, on the other hand, read and understand findByColumnAndValue, since your code will look similar in
-//    some ways.
-
-//    You’ll need to call findByValue from somewhere in main. We’ll leave it up to you to find where. You might have
-//    noticed that when you try to search all columns using the app, a message is printed, so that is a good clue to
-//    help you find where to place this new method call. Once you find where to call your new method, you can Run the
-//    program again to test your code.
-
-    public static ArrayList<HashMap<String, String>> findByValue() {
-
-        return anyColumnJobs;
-
+        for (HashMap<String, String> row : allJobs) {
+            for (String key : row.keySet()) {
+                String jobDetail = row.get(key).toUpperCase();
+                if (jobDetail.contains(value.toUpperCase())) {
+                    jobs.add(row);
+                    break;
+                }
+            }
+        }
+        return jobs;
     }
 
     /**
